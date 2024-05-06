@@ -1,15 +1,42 @@
-<x-app-layout>
-    <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('Dashboard') }}
-        </h2>
-    </x-slot>
+@extends('layouts.master')
+@section('title')
+Dashboard
+@endsection
 
-    <div class="py-12">
-        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg">
-                <x-welcome />
-            </div>
-        </div>
+@section('pages')
+Dashboard
+@endsection
+
+<body class="g-sidenav-show  bg-gray-100">
+    @include('layouts.main-sidebar')	
+  <main class="main-content position-relative max-height-vh-100 h-100 border-radius-lg ">
+    <!-- Navbar -->
+    @include('layouts.main-header')	
+    <!-- End Navbar -->
+    <div class="container-fluid py-4">
+     <!-- Navbar 2 -->
+     @include('layouts.header')	
+      <!-- End Navbar 2 -->
+
+        <!-- analysis  -->
+        @include('layouts.analysis')	
+         <!-- End analysis  -->
+
+         <div>
+
+         </div>
+
+    
+
+      
+         @include('layouts.footer')
     </div>
-</x-app-layout>
+    
+  </main>
+
+  
+ 
+  <!--   Core JS Files   -->
+@include('layouts.footer-scripts')
+</body>
+
