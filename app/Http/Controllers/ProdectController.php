@@ -7,12 +7,11 @@ use Illuminate\Http\Request;
 
 class ProdectController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
+
     public function index()
     {
-        //
+        $prodects = Prodect::all();
+        return view('pages.prodect.index' , compact('prodects'));
     }
 
     /**
@@ -28,7 +27,7 @@ class ProdectController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        return  $request ;
     }
 
     /**
