@@ -12,7 +12,8 @@ class CustomerController extends Controller
      */
     public function index()
     {
-        //
+        $cusromers = Customer::all();
+        return view('pages.customer.index' , compact('cusromers'));
     }
 
     /**
@@ -28,7 +29,7 @@ class CustomerController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        return $request ;
     }
 
     /**
