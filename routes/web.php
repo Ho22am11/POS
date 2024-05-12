@@ -4,6 +4,7 @@ use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\EmployeesController;
 use App\Http\Controllers\ProdectController;
 use App\Models\Customer;
+use GuzzleHttp\Middleware;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -17,20 +18,18 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::vies('/','welcome');
 
 Route::middleware([
     'auth:sanctum',
     config('jetstream.auth_session'),
     'verified',
 ])->group(function () {
-    Route::get('/dashboard', function () {
-        return view('dashboard');
-    })->name('dashboard');
+    Route::view ('/dashboard', 'dashboard')->name('dashboard');
 });
 
-Route::resource('prodects' , ProdectController::class);
-Route::resource('employees' , EmployeesController::class);
-Route::resource('customers' , CustomerController::class);
+Route::group([ 'Middleware' => 'auth'] , function(){
+    Route::resource('prodects' , ProdectController::class);
+    Route::resource('employees' , EmployeesController::class);
+    Route::resource('customers' , CustomerController::class);
+});
