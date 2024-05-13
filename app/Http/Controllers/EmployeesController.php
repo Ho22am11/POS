@@ -7,34 +7,38 @@ use Illuminate\Http\Request;
 
 class EmployeesController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
+
     public function index()
     {
         $employees = Employees::all();
         return view('pages.employee.index' , compact('employees'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
+
     public function create()
     {
-        //
+        
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
+
     public function store(Request $request)
     {
-        //
+        if($request->hasFile('img')){
+            $image = $request->file('img');
+
+            $imagenam = time().'.'.$image->getClientOriginalExtension();
+
+            $image->storeAs('images/employee' ,  $imagenam , 'upload_images' );
+
+
+        }
+       $employee = Employees::create($request->all());
+
+       $employee->update(['img' => 'images/employee/'.$imagenam]);
+
+        return back();
     }
 
-    /**
-     * Display the specified resource.
-     */
     public function show(Employees $employees)
     {
         //

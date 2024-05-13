@@ -85,7 +85,7 @@ employees
                         </div>
                         <div class="col">
                             <label for="type">Gender</label>
-                            <select class="form-control" name="Gender">
+                            <select class="form-control" >
                                 <option selected> selecte Gender</option>
                                 <option value="1">male</option>
                                 <option value="2">famle</option>
