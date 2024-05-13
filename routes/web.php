@@ -18,7 +18,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::vies('/','welcome');
+Route::view('/','welcome');
 
 Route::middleware([
     'auth:sanctum',

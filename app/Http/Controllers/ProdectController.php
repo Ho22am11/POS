@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Prodect;
 use Illuminate\Http\Request;
+use Spatie\Image\Enums\Fit;
+use Spatie\MediaLibrary\MediaCollections\Models\Media;
 
 class ProdectController extends Controller
 {
@@ -14,9 +16,6 @@ class ProdectController extends Controller
         return view('pages.prodect.index' , compact('prodects'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
     public function create()
     {
         //
@@ -27,7 +26,22 @@ class ProdectController extends Controller
      */
     public function store(Request $request)
     {
-        return  $request ;
+        if($request->hasFile('img')){
+            $image = $request->file('img');
+            $imgmame = time(). '.' . $image->getClientOriginalExtension();
+            $image->storeAs('images/prodect/' , $imgmame , 'upload_images' );
+        }
+
+        $product =  Prodect::create($request->all());
+
+  
+        $product->update(['img' => 'images/prodect/'.'.'.$imgmame]);
+
+
+        return back();
+
+
+
     }
 
     /**

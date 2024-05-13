@@ -69,6 +69,7 @@ Prodects
         <div class="col-12">
           <div class="card mb-4">
             <div class="card-header pb-0">
+              
               <h6> add prodect</h6>
             </div>
 
@@ -97,13 +98,13 @@ Prodects
                       <div class="row">
                         <div class="col"> 
 
-                            <label for="price">price</label>
-                            <input type="text" class="form-control" name="price" id="price" placeholder="price">
+                            <label for="amount">price</label>
+                            <input type="text" class="form-control" name="amount" id="amount" placeholder="price">
                         </div>
                         <div class="col"> 
 
-                            <label for="quantity">quantity</label>
-                            <input type="text" class="form-control" name="quantity" id="quantity" placeholder="quantity">
+                            <label for="count">quantity</label>
+                            <input type="text" class="form-control" name="count" id="count" placeholder="quantity">
                         </div>
                         <div class="col"> 
 
