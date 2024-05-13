@@ -4,9 +4,11 @@ namespace App\Http\Controllers;
 
 use App\Models\Employees;
 use Illuminate\Http\Request;
-
+use App\Traits\ImageTraits ;
 class EmployeesController extends Controller
 {
+
+    use ImageTraits ;
 
     public function index()
     {
@@ -23,19 +25,10 @@ class EmployeesController extends Controller
 
     public function store(Request $request)
     {
-        if($request->hasFile('img')){
-            $image = $request->file('img');
-
-            $imagenam = time().'.'.$image->getClientOriginalExtension();
-
-            $image->storeAs('images/employee' ,  $imagenam , 'upload_images' );
-
-
-        }
+     
        $employee = Employees::create($request->all());
-
-       $employee->update(['img' => 'images/employee/'.$imagenam]);
-
+       $imagenam = $this->storeimage($request , 'employee');
+       $employee->update(['img' => 'images/employee/'.  $imagenam ]);
         return back();
     }
 

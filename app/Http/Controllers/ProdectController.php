@@ -6,9 +6,10 @@ use App\Models\Prodect;
 use Illuminate\Http\Request;
 use Spatie\Image\Enums\Fit;
 use Spatie\MediaLibrary\MediaCollections\Models\Media;
-
+use App\Traits\ImageTraits ;
 class ProdectController extends Controller
 {
+    use ImageTraits;
 
     public function index()
     {
@@ -26,16 +27,12 @@ class ProdectController extends Controller
      */
     public function store(Request $request)
     {
-        if($request->hasFile('img')){
-            $image = $request->file('img');
-            $imgmame = time(). '.' . $image->getClientOriginalExtension();
-            $image->storeAs('images/prodect/' , $imgmame , 'upload_images' );
-        }
-
+       
         $product =  Prodect::create($request->all());
 
-  
-        $product->update(['img' => 'images/prodect/'.'.'.$imgmame]);
+        $imgmame = $this->storeimage($request , 'prodect');
+
+        $product->update(['img' => 'images/prodect/'.$imgmame]);
 
 
         return back();
