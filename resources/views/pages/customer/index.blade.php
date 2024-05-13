@@ -83,7 +83,7 @@ employees
                         </div>
                         <div class="col">
                             <label for="type">Gender</label>
-                            <select class="form-control" name="Gender">
+                            <select class="form-control" >
                                 <option selected> selecte Gender</option>
                                 <option value="1">male</option>
                                 <option value="2">famle</option>
@@ -101,7 +101,7 @@ employees
                         <div class="col"> 
 
                             <label for="Address">Address</label>
-                            <input type="text" class="form-control" name="Address" id="Address" placeholder="Address">
+                            <input type="text" class="form-control" name="addrese" id="Address" placeholder="Address">
                         </div>
                         <div class="col"> 
 
@@ -111,7 +111,7 @@ employees
 
                        
                       </div>       <br>                
-                        
+                         
                        
                         <button type="submit" class="btn btn-primary">add prodect</button>
 
