@@ -10,4 +10,8 @@ class Prodect extends Model
     use HasFactory;
 
     protected $guarded = [];
+
+    public function typeprodect(){
+        return $this->belongsTo('App\Models\TypeProdect' , 'id_type');
+    }
 }

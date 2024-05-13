@@ -22,36 +22,38 @@ Prodects
           <table class="table align-items-center mb-0">
             <thead>
               <tr>
-                <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Author</th>
-                <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Function</th>
-                <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Status</th>
-                <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Employed</th>
+                <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">name</th>
+                <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">type</th>
+                <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">price</th>
+                <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">quantity</th>
                 <th class="text-secondary opacity-7"></th>
               </tr>
             </thead>
             <tbody>
-        
+
+              @foreach ($prodects as $prodect)
+                  
+              
               <tr>
                 <td>
                   <div class="d-flex px-2 py-1">
                     <div>
-                      <img src="../assets/img/team-4.jpg" class="avatar avatar-sm me-3" alt="user6">
+                      <img src="{{ $prodect->img }}" class="avatar avatar-sm me-3" alt="user6">
                     </div>
                     <div class="d-flex flex-column justify-content-center">
-                      <h6 class="mb-0 text-sm">Miriam Eric</h6>
-                      <p class="text-xs text-secondary mb-0">miriam@creative-tim.com</p>
+                      <h6 class="mb-0 text-sm">{{ $prodect->name }}</h6>
+                      
                     </div>
                   </div>
                 </td>
                 <td>
-                  <p class="text-xs font-weight-bold mb-0">Programtor</p>
-                  <p class="text-xs text-secondary mb-0">Developer</p>
+                  <p class="text-xs font-weight-bold mb-0">{{ $prodect->typeprodect->name }}</p>
                 </td>
                 <td class="align-middle text-center text-sm">
-                  <span class="badge badge-sm bg-gradient-secondary">Offline</span>
+                  <span class="badge badge-sm bg-gradient-secondary">{{ $prodect->amount }}</span>
                 </td>
                 <td class="align-middle text-center">
-                  <span class="text-secondary text-xs font-weight-bold">14/09/20</span>
+                  <span class="text-secondary text-xs font-weight-bold">{{ $prodect->count }}</span>
                 </td>
                 <td class="align-middle">
                   <a href="javascript:;" class="text-secondary font-weight-bold text-xs" data-toggle="tooltip" data-original-title="Edit user">
@@ -59,6 +61,8 @@ Prodects
                   </a>
                 </td>
               </tr>
+              @endforeach
+        
             </tbody>
           </table>
         </div>
@@ -86,11 +90,12 @@ Prodects
                         </div>
                         <div class="col">
                             <label for="type">type</label>
-                            <select class="form-control" name="type">
+                            <select class="form-control" name="id_type">
                                 <option selected> selecte type</option>
-                                <option value="1">computers</option>
-                                <option value="2">Electronics</option>
-                                <option value="3">Clothing</option>
+                                @foreach ($types as $type)
+                                <option value="{{ $type->id }}">{{ $type->name}}</option>
+                                @endforeach
+                            
                               </select>
                           
                         </div>

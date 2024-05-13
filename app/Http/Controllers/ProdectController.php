@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Prodect;
+use App\Models\TypeProdect;
 use Illuminate\Http\Request;
 use Spatie\Image\Enums\Fit;
 use Spatie\MediaLibrary\MediaCollections\Models\Media;
@@ -13,8 +14,9 @@ class ProdectController extends Controller
 
     public function index()
     {
-        $prodects = Prodect::all();
-        return view('pages.prodect.index' , compact('prodects'));
+        $data['prodects'] = Prodect::latest()->get();
+        $data['types'] = TypeProdect::all();
+        return view('pages.prodect.index' , $data );
     }
 
     public function create()
