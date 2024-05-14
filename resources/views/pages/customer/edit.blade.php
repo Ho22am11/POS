@@ -1,10 +1,10 @@
 @extends('layouts.master')
 @section('title')
-customers
+Edit customer
 @endsection
 
 @section('pages')
-customers
+Edit customer
 @endsection
 
 <body class="g-sidenav-show  bg-gray-100">
@@ -31,7 +31,7 @@ customers
             </thead>
             <tbody>
         
-              @foreach ($customers as $customer)
+              
               <tr>
                
                     
@@ -60,7 +60,7 @@ customers
                 </td>
 
               </tr>
-              @endforeach
+              
             </tbody>
           </table>
         </div>
@@ -71,18 +71,19 @@ customers
         <div class="col-12">
           <div class="card mb-4">
             <div class="card-header pb-0">
-              <h6> add Customer</h6>
+              <h6> Edit Customer</h6>
             </div>
 
                 
-                    <form action="{{ route('customers.store') }}" method="post"  autocomplete="off" enctype="multipart/form-data">
+                    <form action="{{ route('customers.update',  $customer->id ) }}" method="POST"  autocomplete="off" enctype="multipart/form-data">
                         @csrf
+                        @method('PUT')
                     <div class="card-header">
                       <div class="row">
                         <div class="col">
                           
                             <label for="name">name</label>
-                            <input type="text" class="form-control" name="name" id="name" placeholder="name">
+                            <input type="text" class="form-control" name="name" id="name" placeholder="name" value="{{ $customer->name }}">
                           
                         </div>
                         <div class="col">
@@ -100,24 +101,24 @@ customers
                         <div class="col"> 
 
                             <label for="email">Email</label>
-                            <input type="email" class="form-control" name="email" id="email" placeholder="email">
+                            <input type="email" class="form-control" name="email" id="email" placeholder="email" value="{{ $customer->email }}">
                         </div>
                         <div class="col"> 
 
                             <label for="Address">Address</label>
-                            <input type="text" class="form-control" name="addrese" id="Address" placeholder="Address">
+                            <input type="text" class="form-control" name="addrese" id="Address" placeholder="Address" value="{{ $customer->addrese }}">
                         </div>
                         <div class="col"> 
 
                             <label for="num">phone number</label>
-                            <input type="text" class="form-control" name="num" id="num" placeholder="num">
+                            <input type="text" class="form-control" name="num" id="num" placeholder="num"  value="{{ $customer->num }}" >
                         </div>
 
                        
                       </div>       <br>                
                          
                        
-                        <button type="submit" class="btn btn-primary">add prodect</button>
+                        <button type="submit" class="btn btn-primary">edit customer</button>
 
                     </div>
                       </form>

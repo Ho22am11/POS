@@ -38,17 +38,18 @@ class CustomerController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Customer $customer)
+    public function edit($id)
     {
-        //
+        $customer = Customer::findOrFail($id);      
+        return view('pages.customer.edit' , compact('customer') ) ;
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, Customer $customer)
+    
+    public function update(Request $request, $id )
     {
-        //
+        $customer = Customer::findOrFail($id);
+        $customer->update($request->all());
+        return redirect()->route('customers.index');
     }
 
     /**
