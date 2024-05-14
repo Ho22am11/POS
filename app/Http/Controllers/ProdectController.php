@@ -54,17 +54,40 @@ class ProdectController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Prodect $prodect)
+    public function edit($id)
     {
-        //
+        $data['prodect'] = Prodect::findOrFail($id);
+        $data['types'] = TypeProdect::all();
+        return view('pages.prodect.edit' , $data );
+
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Prodect $prodect)
+    public function update(Request $request, $id)
     {
-        //
+        $prodect = Prodect::findOrFail($id);
+       
+        if($prodect->img != $request->img){
+            $prodect->update($request->all());
+
+            $imgmame =  $this->storeimage($request , 'prodect');
+
+            $prodect->update(['img' => 'images/prodect/'.$imgmame]);
+
+          
+
+        }else{
+            $prodect->update($request->all());
+            
+        }
+
+        return redirect()->route('prodects.index');
+        
+
+        
+        
     }
 
     /**

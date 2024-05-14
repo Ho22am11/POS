@@ -1,11 +1,12 @@
 @extends('layouts.master')
 @section('title')
-Prodects
+Edit Prodects
 @endsection
 
 @section('pages')
-Prodects
+Edit Prodects
 @endsection
+
 
 <body class="g-sidenav-show  bg-gray-100">
     @include('layouts.main-sidebar')	
@@ -31,15 +32,14 @@ Prodects
             </thead>
             <tbody>
 
-              @foreach ($prodects as $prodect)
+             
                   
               
               <tr>
                 <td>
                   <div class="d-flex px-2 py-1">
                     <div>
-                      <img src="{{ $prodect->img }}" class="avatar avatar-sm me-3" alt="user6">
-                      
+                      <img src="/{{ $prodect->img }}" class="avatar avatar-sm me-3" alt="user6">
                     </div>
                     <div class="d-flex flex-column justify-content-center">
                       <h6 class="mb-0 text-sm">{{ $prodect->name }}</h6>
@@ -62,7 +62,7 @@ Prodects
                   </a>
                 </td>
               </tr>
-              @endforeach
+              
         
             </tbody>
           </table>
@@ -75,24 +75,24 @@ Prodects
           <div class="card mb-4">
             <div class="card-header pb-0">
               
-              <h6> add prodect</h6>
+              <h6> Edit prodect</h6>
             </div>
 
                 
-                    <form action="{{ route('prodects.store') }}" method="post"  autocomplete="off" enctype="multipart/form-data">
+                    <form action="{{ route('prodects.update', $prodect->id ) }}" method="post"  autocomplete="off" enctype="multipart/form-data">
                         @csrf
                     <div class="card-header">
                       <div class="row">
                         <div class="col">
                           
                             <label for="name">name</label>
-                            <input type="text" class="form-control" name="name" id="name" placeholder="name">
+                            <input type="text" class="form-control" name="name" id="name" placeholder="name" value="{{ $prodect->name }}">
                           
                         </div>
                         <div class="col">
                             <label for="type">type</label>
-                            <select class="form-control" name="id_type">
-                                <option selected> selecte type</option>
+                            <select class="form-control" name="id_type" >
+                                <option value="{{ $prodect->id_type }}"  selected>{{ $prodect->typeprodect->name}} </option>
                                 @foreach ($types as $type)
                                 <option value="{{ $type->id }}">{{ $type->name}}</option>
                                 @endforeach
@@ -105,26 +105,36 @@ Prodects
                         <div class="col"> 
 
                             <label for="amount">price</label>
-                            <input type="text" class="form-control" name="amount" id="amount" placeholder="price">
+                            <input type="text" class="form-control" name="amount" id="amount" placeholder="price"  value="{{ $prodect->amount }}">
                         </div>
                         <div class="col"> 
 
                             <label for="count">quantity</label>
-                            <input type="text" class="form-control" name="count" id="count" placeholder="quantity">
+                            <input type="text" class="form-control" name="count" id="count" placeholder="quantity"  value="{{ $prodect->count }}">
                         </div>
                         <div class="col"> 
 
                             <label for="img">image</label>
-                             <input name="img" type="file" class="form-control" id="img" lang="es" accept="image/*">
+                            <input type="hidden" name="img" value="{{ $prodect->img }}" >
+                            <input name="img" type="file" class="form-control" id="img" lang="es" accept="image/*" >
                               
                               </div>
+
+                             
                               
   
                         </div><br>
+                        <div class="row">
+                            <div class="col">
+                            <img src=" /{{ $prodect->img }}"  alt="product image" class="rounded float-right" style="width: 200px; height: 200px;" >
+                            </div>
+
+                         </div>
+                         <br>
                       
                         
                        
-                        <button type="submit" class="btn btn-primary">add prodect</button>
+                        <button type="submit" class="btn btn-primary">edit prodect</button>
 
                     </div>
                       </form>
