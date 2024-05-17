@@ -2,11 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\ProdectRequest;
 use App\Models\Prodect;
 use App\Models\TypeProdect;
 use Illuminate\Http\Request;
-use Spatie\Image\Enums\Fit;
-use Spatie\MediaLibrary\MediaCollections\Models\Media;
 use App\Traits\ImageTraits ;
 class ProdectController extends Controller
 {
@@ -27,8 +26,9 @@ class ProdectController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(ProdectRequest $request)
     {
+        $request->validated();
        
         $product =  Prodect::create($request->all());
 
@@ -37,8 +37,7 @@ class ProdectController extends Controller
         $product->update(['img' => 'images/prodect/'.$imgmame]);
 
 
-        return back();
-
+        return back()->with('success', 'Customer added successfully.');
 
 
     }

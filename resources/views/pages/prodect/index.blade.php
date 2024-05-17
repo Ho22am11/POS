@@ -13,7 +13,12 @@ Prodects
     <!-- Navbar -->
     @include('layouts.main-header')	
     <!-- End Navbar -->
+    @if (session('success'))
+    <div class="alert alert-secondary">
+      {{ session('success') }}
+    @endif
     <div class="row">
+
         <div class="col-12">
           <div class="card mb-4">
             <div class="card-header pb-0">
@@ -76,6 +81,15 @@ Prodects
             <div class="card-header pb-0">
               <h6> add prodect</h6>
             </div>
+            @if ($errors->any())
+            <div class="alert alert-danger">
+                <ul>
+                    @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
+        @endif
 
                 
                     <form action="{{ route('prodects.store') }}" method="post"  autocomplete="off" enctype="multipart/form-data">
