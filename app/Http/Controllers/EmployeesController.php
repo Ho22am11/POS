@@ -40,17 +40,31 @@ class EmployeesController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Employees $employees)
+    public function edit($id)
     {
-        //
+        $employee = Employees::findOrFail($id);
+        return view('pages.employee.edit' , compact('employee'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Employees $employees)
+    public function update(Request $request , $id )
     {
-        //
+        $employee = Employees::findOrFail($id);
+        if ($request->img != $employee->img){
+            $employee->update($request->all());
+
+            $imgmame =  $this->storeimage($request , 'employee');
+
+            $employee->update(['img' => 'images/employee/'.$imgmame]);
+
+        }else{
+            $employee->update($request->all());
+            
+        }
+
+        return redirect()->route('employees.index');
     }
 
     /**

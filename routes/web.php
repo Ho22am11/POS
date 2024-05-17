@@ -34,4 +34,5 @@ Route::group([ 'Middleware' => 'auth'] , function(){
     Route::resource('customers' , CustomerController::class);
     Route::POST('customers/{id}', [CustomerController::class , 'update'])->name('customers.update');
     Route::POST('prodects/{id}', [ProdectController::class , 'update'])->name('prodects.update');
+    Route::POST('employees/{id}', [EmployeesController::class , 'update'])->name('prodects.update');
 });

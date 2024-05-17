@@ -29,14 +29,14 @@ employees
               </tr>
             </thead>
             <tbody>
-        @foreach ($employees as $employee)
+        
             
        
               <tr>
                 <td>
                   <div class="d-flex px-2 py-1">
                     <div>
-                      <img src=" {{ $employee->img }}" class="avatar avatar-sm me-3" alt="user6">
+                      <img src="/{{ $employee->img }}" class="avatar avatar-sm me-3" alt="user6">
                     </div>
                     <div class="d-flex flex-column justify-content-center">
                       <h6 class="mb-0 text-sm">{{ $employee->name }}</h6>
@@ -56,7 +56,7 @@ employees
                   </a>
                 </td>
               </tr>
-              @endforeach
+              
             </tbody>
           </table>
         </div>
@@ -67,18 +67,18 @@ employees
         <div class="col-12">
           <div class="card mb-4">
             <div class="card-header pb-0">
-              <h6> add employees</h6>
+              <h6> edit employees</h6>
             </div>
 
                 
-                    <form action="{{ route('employees.store') }}" method="post"  autocomplete="off" enctype="multipart/form-data">
+                    <form action="{{ route('employees.update' , $employee->id ) }}" method="post"  autocomplete="off" enctype="multipart/form-data">
                         @csrf
                     <div class="card-header">
                       <div class="row">
                         <div class="col">
                           
                             <label for="name">name</label>
-                            <input type="text" class="form-control" name="name" id="name" placeholder="name">
+                            <input type="text" class="form-control" name="name" id="name" placeholder="name" value="{{ $employee->name }}">
                           
                         </div>
                         <div class="col">
@@ -96,22 +96,32 @@ employees
                         <div class="col"> 
 
                             <label for="age">age</label>
-                            <input type="text" class="form-control" name="age" id="age" placeholder="age">
+                            <input type="text" class="form-control" name="age" id="age" placeholder="age" value="{{ $employee->age }}">
                         </div>
                         <div class="col"> 
 
                             <label for="salary">salary</label>
-                            <input type="text" class="form-control" name="salary" id="salary" placeholder="salary">
+                            <input type="text" class="form-control" name="salary" id="salary" placeholder="salary" value="{{ $employee->salary }}">
                         </div>
                         <div class="col"> 
 
                             <label for="img">image</label>
-                             <input name="img" type="file" class="form-control" id="img" lang="es" accept="image/*">
+                            <input type="hidden" name="img" value="{{ $employee->img }}" >
+                            <input name="img" type="file" class="form-control" id="img" lang="es" accept="image/*" >
                               
                               </div>
+
+                             
                               
   
                         </div><br>
+                        <div class="row">
+                            <div class="col">
+                            <img src=" /{{ $employee->img }}"  alt="product image" class="rounded float-right" style="width: 200px; height: 200px;" >
+                            </div>
+
+                         </div>
+                         <br>
                       
                         
                        
