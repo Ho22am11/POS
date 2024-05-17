@@ -14,6 +14,11 @@ employees
     @include('layouts.main-header')	
     <!-- End Navbar -->
     <div class="row">
+      @if (session('success'))
+      <div class="alert alert-secondary">
+        {{ session('success') }}
+      @endif
+      </div>
         <div class="col-12">
           <div class="card mb-4">
             <div class="card-header pb-0">
@@ -69,6 +74,15 @@ employees
             <div class="card-header pb-0">
               <h6> add employees</h6>
             </div>
+            @if ($errors->any())
+            <div class="alert alert-danger">
+                <ul>
+                    @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
+        @endif
 
                 
                     <form action="{{ route('employees.store') }}" method="post"  autocomplete="off" enctype="multipart/form-data">

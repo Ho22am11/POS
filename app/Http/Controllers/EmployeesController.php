@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\EmployeeRequest;
 use App\Models\Employees;
 use Illuminate\Http\Request;
 use App\Traits\ImageTraits ;
@@ -23,13 +24,14 @@ class EmployeesController extends Controller
     }
 
 
-    public function store(Request $request)
+    public function store(EmployeeRequest $request)
     {
      
+        $request->validated();
        $employee = Employees::create($request->all());
        $imagenam = $this->storeimage($request , 'employee');
        $employee->update(['img' => 'images/employee/'.  $imagenam ]);
-        return back();
+       return back()->with('success', 'Customer added successfully.');
     }
 
     public function show(Employees $employees)

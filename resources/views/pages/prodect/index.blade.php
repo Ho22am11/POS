@@ -74,7 +74,6 @@ Prodects
         <div class="col-12">
           <div class="card mb-4">
             <div class="card-header pb-0">
-              
               <h6> add prodect</h6>
             </div>
 
