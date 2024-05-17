@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Customer;
 use Illuminate\Http\Request;
-
+use App\Http\Requests\CustomerRequest ;
 class CustomerController extends Controller
 {
     /**
@@ -21,10 +21,11 @@ class CustomerController extends Controller
         //
     }
 
-    public function store(Request $request)
+    public function store(CustomerRequest $request)
     {
+        $request->validated();
         Customer::create($request->all());
-        return back();
+        return back()->with('success', 'Customer added successfully.');
     }
 
     /**
