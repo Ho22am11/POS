@@ -82,7 +82,7 @@ employees
                     @endforeach
                 </ul>
             </div>
-        @endif
+              @endif
 
                 
                     <form action="{{ route('employees.store') }}" method="post"  autocomplete="off" enctype="multipart/form-data">
@@ -133,6 +133,8 @@ employees
 
                     </div>
                       </form>
+
+                      
                 
             
           </div>

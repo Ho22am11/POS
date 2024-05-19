@@ -23,9 +23,7 @@ class ProdectController extends Controller
         //
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
+
     public function store(ProdectRequest $request)
     {
         $request->validated();
@@ -42,17 +40,13 @@ class ProdectController extends Controller
 
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(Prodect $prodect)
+
+    public function viewprodect()
     {
-        //
+        $prodects = Prodect::all(); 
+        return view('dashboard' , compact('prodects'));
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
     public function edit($id)
     {
         $data['prodect'] = Prodect::findOrFail($id);
