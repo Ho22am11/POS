@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\EmployeesController;
+use App\Http\Controllers\OrderController;
 use App\Http\Controllers\ProdectController;
 use App\Models\Customer;
 use GuzzleHttp\Middleware;
@@ -30,9 +31,12 @@ Route::middleware([
 
 Route::group([ 'Middleware' => 'auth'] , function(){
     Route::resource('prodects' , ProdectController::class);
+    Route::POST('prodects/{id}', [ProdectController::class , 'update'])->name('prodects.update');
     Route::resource('employees' , EmployeesController::class);
+    Route::POST('employees/{id}', [EmployeesController::class , 'update'])->name('prodects.update');
     Route::resource('customers' , CustomerController::class);
     Route::POST('customers/{id}', [CustomerController::class , 'update'])->name('customers.update');
-    Route::POST('prodects/{id}', [ProdectController::class , 'update'])->name('prodects.update');
-    Route::POST('employees/{id}', [EmployeesController::class , 'update'])->name('prodects.update');
+    Route::resource('orders', OrderController::class );
+    
+    
 });
