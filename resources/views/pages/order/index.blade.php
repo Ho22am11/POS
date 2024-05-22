@@ -26,34 +26,18 @@ Orders
             <thead>
               <tr>
                 <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Name</th>
-                <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Age</th>
-                <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Salary</th>
+                <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-4 ">Quantity</th>
+                <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Parice</th>
                 <th class="text-secondary opacity-7"></th>
               </tr>
             </thead>
-            <tbody>
+            <tbody class="order_list">
 
-            
-       
-              <tr>
-                <td>
-                  
-                </td>
-                <td>
-               </td>
-                <td class="align-middle text-center text-sm">
-                  
-                </td>
-                
-                <td class="align-middle">
-                  <a href="" class="text-secondary font-weight-bold text-xs" data-toggle="tooltip" data-original-title="Edit user">
-                    Edit
-                  </a>
-                </td>
-              </tr>
+     
          
             </tbody>
           </table>
+          
 
           <button type="submit" class="btn btn-primary">add Order</button>
       </div>
@@ -90,11 +74,12 @@ Orders
               <div class="card-text">
                 <h3 class="secondary-font text-primary m-3">{{ $prodect->amount }}</h3>
                 <div class="d-flex flex-wrap mt-2">
-                  <a href="" class="btn-cart me-2 px-3 pt-2 pb-2 add-prodect-btn"  id="prodect-{{  $prodect->id }}" 
+                  <a href="#" class="btn-cart me-2 px-3 pt-2 pb-2 add-prodect-btn" id="prodect-{{ $prodect->id }}" 
                     data-name="{{ $prodect->name }}" data-id="{{ $prodect->id }}" 
                     data-amount="{{ $prodect->amount }}">
                     <h5 class="text-uppercase m-0">Add to Cart</h5>
-                  </a>
+                 </a>
+             
                   <a href="#" class="btn-wishlist px-3 pt-2">
                     <iconify-icon icon="fluent:heart-28-filled" class="fs-5"></iconify-icon>
                   </a>
@@ -122,5 +107,6 @@ Orders
   <!--   Core JS Files   -->
 @include('layouts.footer-scripts')
 
-<script src="{{ asset('/assets/js/order.js') }}"></script>
+<script src="{{ asset('assets/js/addcar.js') }}"></script>
+
 </body>
