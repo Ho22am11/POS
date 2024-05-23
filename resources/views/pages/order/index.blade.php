@@ -36,6 +36,13 @@ Orders
      
          
             </tbody>
+            
+            <tfoot>
+              <tr>
+                  <td colspan="2">Total</td>
+                  <td id="total-amount">0</td>
+              </tr>
+          </tfoot>
           </table>
           
 
