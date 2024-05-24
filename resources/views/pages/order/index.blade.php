@@ -10,6 +10,9 @@ Orders
 <body class="g-sidenav-show  bg-gray-100">
     @include('layouts.main-sidebar')	
   <main class="main-content position-relative max-height-vh-100 h-100 border-radius-lg ">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <!-- Navbar -->
     @include('layouts.main-header')	
     <!-- End Navbar -->
@@ -22,7 +25,8 @@ Orders
         <div class="card-body p-3">
             <h3 class="card-title pt-3 m-3">Orders</h3>
         </div>
-        <table class="table align-items-center mb-0">
+       <form method="POST" action="{{ route('orders.store') }}" >
+         <table class="table align-items-center mb-0">
             <thead>
               <tr>
                 <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Name</th>
@@ -31,22 +35,26 @@ Orders
                 <th class="text-secondary opacity-7"></th>
               </tr>
             </thead>
+          
+            @csrf
             <tbody class="order_list">
 
      
          
             </tbody>
             
-            <tfoot>
+            <tfoot class="orde">
               <tr>
                   <td colspan="2">Total</td>
                   <td id="total-amount">0</td>
               </tr>
           </tfoot>
+
           </table>
           
 
-          <button type="submit" class="btn btn-primary">add Order</button>
+          <button type="submit" class="btn btn-primary submit-btn">add Order</button>
+        </form>
       </div>
 
       

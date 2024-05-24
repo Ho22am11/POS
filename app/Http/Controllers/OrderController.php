@@ -3,14 +3,13 @@
 namespace App\Http\Controllers;
 
 use App\Models\Order;
+use App\Models\OrderIteam;
 use App\Models\Prodect;
 use Illuminate\Http\Request;
 
 class OrderController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
+
     public function index()
     {
         $prodects = Prodect::all();
@@ -25,25 +24,29 @@ class OrderController extends Controller
         //
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
+
     public function store(Request $request)
     {
-        //
+        $order = Order::create([
+            'customer_id' => 1 ,
+            'total' => $request->total
+        ]);
+
+        foreach($request->products as $key => $count) 
+        OrderIteam::create([
+            'order_id' =>  $order->id ,
+            'prodect_id' => $key ,
+            'count' => $count['count'],
+        ]);
+        return $request ;
     }
 
-    /**
-     * Display the specified resource.
-     */
     public function show(Order $order)
     {
         //
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
+
     public function edit(Order $order)
     {
         //
