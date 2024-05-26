@@ -12,8 +12,9 @@ class OrderController extends Controller
 
     public function index()
     {
-        $prodects = Prodect::all();
-        return view('pages.order.index' , compact('prodects' ));
+        $data['prodects'] =  Prodect::all();
+        $data['orders'] = Order::latest()->get();
+        return view('pages.order.index' , $data );
     }
 
     /**
@@ -32,13 +33,13 @@ class OrderController extends Controller
             'total' => $request->total
         ]);
 
-        foreach($request->products as $key => $count) 
+        foreach($request->products as $key => $itemproduct) 
         OrderIteam::create([
             'order_id' =>  $order->id ,
             'prodect_id' => $key ,
-            'count' => $count['count'],
+            'count' => $itemproduct['count'],
         ]);
-        return $request ;
+        return back() ;
     }
 
     public function show(Order $order)

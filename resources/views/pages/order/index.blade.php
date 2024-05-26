@@ -23,7 +23,7 @@ Orders
      <div class="col-lg-5 mb-lg-0 mb-4">
       <div class="card z-index-2">
         <div class="card-body p-3">
-            <h3 class="card-title pt-3 m-3">Orders</h3>
+            <h3 class="card-title pt-3 m-3">My Orders</h3>
         </div>
        <form method="POST" action="{{ route('orders.store') }}" >
          <table class="table align-items-center mb-0">
@@ -62,7 +62,36 @@ Orders
       <div class="col-lg-7">
        <div class="card z-index-2">
         <div class="card-body p-3">
+          <h3 class="card-title pt-3 m-3">Orders</h3>
+          <table class="table align-items-center mb-0">
+            <thead>
+              <tr>
+                <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-4">#</th>
+                <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ">customer</th>
+                <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Parice</th>
+                <th class="text-secondary opacity-7"></th>
+              </tr>
+            </thead>
+          
+          
+            <tbody >
+              @foreach ($orders as $order)
+              <tr>
+                <td >{{ $loop->index+1 }}</td>
+                <td >{{ $order->customer->name }}</td>
+                <td>{{ $order->total}}</td>
+                <td><a href="#" >show</a></td>
+              </tr>
+                  
+              @endforeach
+
+     
          
+            </tbody>
+        
+
+          </table>
+
         </div>
       </div>
     </div>
