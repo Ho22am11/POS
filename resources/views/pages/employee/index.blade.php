@@ -54,6 +54,8 @@ employees
                 <td class="align-middle text-center text-sm">
                   <span class="badge badge-sm bg-gradient-secondary">{{ $employee->salary }}</span>
                 </td>
+
+                
                 
                 <td class="align-middle">
                   <a href="{{ route('employees.edit', $employee->id  ) }}" class="text-secondary font-weight-bold text-xs" data-toggle="tooltip" data-original-title="Edit user">

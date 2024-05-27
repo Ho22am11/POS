@@ -3,7 +3,9 @@
 use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\EmployeesController;
 use App\Http\Controllers\OrderController;
+use App\Http\Controllers\permissionController;
 use App\Http\Controllers\ProdectController;
+use App\Http\Controllers\RoleController;
 use App\Models\Customer;
 use GuzzleHttp\Middleware;
 use Illuminate\Support\Facades\Route;
@@ -37,6 +39,8 @@ Route::group([ 'Middleware' => 'auth'] , function(){
     Route::resource('customers' , CustomerController::class);
     Route::POST('customers/{id}', [CustomerController::class , 'update'])->name('customers.update');
     Route::resource('orders', OrderController::class );
+    Route::resource('roles', RoleController::class );
+    Route::resource('permissions', permissionController::class );
     
     
 });
