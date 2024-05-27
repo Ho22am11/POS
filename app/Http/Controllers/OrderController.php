@@ -42,9 +42,9 @@ class OrderController extends Controller
         return back() ;
     }
 
-    public function show(Order $order)
+    public function show($id)
     {
-        //
+        return $id ;
     }
 
 

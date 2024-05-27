@@ -80,7 +80,7 @@ Orders
                 <td >{{ $loop->index+1 }}</td>
                 <td >{{ $order->customer->name }}</td>
                 <td>{{ $order->total}}</td>
-                <td><a href="#" >show</a></td>
+                <td><a href="{{ route('orders.show', $order->id ) }}" >show</a></td>
               </tr>
                   
               @endforeach
