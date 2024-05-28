@@ -2,16 +2,20 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
+use Spatie\Permission\Models\Role;
 
 class RoleController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
+
     public function index()
     {
-        //
+
+        $data['users'] = User::all();
+        $data['roles'] = Role::all();
+        return view('pages.users.index' , $data );
     }
 
     /**
@@ -27,7 +31,15 @@ class RoleController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        User::create([
+            'name' => $request->name ,
+            'email' => $request->email ,
+            'email_verified_at' => now() ,
+            'password' => Hash::make($request->password),
+        ])->assignRole($request->role);
+
+        return back();
+
     }
 
     /**
@@ -41,9 +53,10 @@ class RoleController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit($id)
     {
-        //
+        $user = User::find($id);
+        return view('pages.users.edit' , compact('user') );
     }
 
     /**
