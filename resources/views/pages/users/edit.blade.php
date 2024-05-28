@@ -73,12 +73,12 @@ Users
         <div class="col-6">
           <div class="card mb-4">
             <div class="card-header pb-0">
-              <h6> add Users</h6>
+              <h6> Edit Users</h6>
             </div>
 
 
                 
-                    <form action="{{ route('roles.store') }}" method="post"  autocomplete="off" enctype="multipart/form-data">
+                    <form action="{{ route('roles.update' , $user->id ) }}" method="post"  autocomplete="off" enctype="multipart/form-data">
                         @csrf
                     <div class="card-header">
                       <div class="row">
@@ -90,7 +90,7 @@ Users
                         </div>
                         <div class="col">
                             <label for="type">Role</label>
-                            <select class="form-control" name="role" >
+                            <select class="form-control" name="roles[]" multiple >
                                 <option selected value="{{ implode(', ', $user->getRoleNames()->toArray()) }}"> {{ implode(', ', $user->getRoleNames()->toArray()) }}</option>
                                 <option value="admin">Admin</option>
                                 <option value="employee">employee</option>
@@ -115,7 +115,7 @@ Users
                       </div>       <br>                
                          
                        
-                        <button type="submit" class="btn btn-primary">add user </button>
+                        <button type="submit" class="btn btn-primary">edit user </button>
 
                     </div>
                       </form>
@@ -126,7 +126,7 @@ Users
         <div class="col-6">
           <div class="card z-index-2">
            <div class="card-body p-3">
-             <h3 class="card-title pt-3 m-3">Role</h3>
+             <h3 class="card-title pt-3 m-3">permission</h3>
              <table class="table align-items-center mb-0">
                <thead>
                  <tr>
@@ -138,6 +138,16 @@ Users
                </thead>
     
                <tbody >
+               @forelse ($permissions as $index => $permission)
+               <tr>
+                <td>{{ $index + 1 }}</td>
+                <td>{{ $permission->name }}</td>
+               </tr>
+              @empty
+              <tr>
+                <td colspan="2">No permissions found</td>
+             </tr>
+              @endforelse
   
 
         

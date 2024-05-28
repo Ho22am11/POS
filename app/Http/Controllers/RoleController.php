@@ -56,15 +56,28 @@ class RoleController extends Controller
     public function edit($id)
     {
         $user = User::find($id);
-        return view('pages.users.edit' , compact('user') );
+        $permissions = $user->getAllPermissions();
+        return view('pages.users.edit' , compact('user' , 'permissions') );
+
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request , $id)
     {
-        //
+        $user = User::find($id);
+        $user->update([
+            'name' => $request->name ,
+            'email' => $request->email ,
+            'email_verified_at' => now() ,
+            'password' => Hash::make($request->password),
+        ]);
+
+        $user->syncRoles($request->roles);
+
+        return back() ;
+
     }
 
     /**

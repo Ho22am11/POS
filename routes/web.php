@@ -41,6 +41,7 @@ Route::group([ 'Middleware' => 'auth'] , function(){
     Route::resource('orders', OrderController::class );
     Route::resource('roles', RoleController::class );
     Route::resource('permissions', permissionController::class );
+    Route::POST('roles/{id}', [RoleController::class , 'update'])->name('roles.update');
     
     
 });
