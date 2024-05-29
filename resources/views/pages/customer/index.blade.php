@@ -55,9 +55,11 @@ customers
                   <span class="text-secondary text-xs font-weight-bold">{{ $customer->addrese }}</span>
                 </td>
                 <td class="align-middle">
+                  @can('edit coustomer')
                   <a href="{{ route('customers.edit' , $customer->id  )}}" class="text-secondary font-weight-bold text-xs" data-toggle="tooltip" data-original-title="Edit user">
                     Edit
                   </a>
+                  @endcan
                 </td>
 
               </tr>

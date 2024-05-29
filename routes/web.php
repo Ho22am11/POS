@@ -21,14 +21,14 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::view('/','welcome');
+
 
 Route::middleware([
     'auth:sanctum',
     config('jetstream.auth_session'),
     'verified',
 ])->group(function () {
-    Route::get('/dashboard', [ProdectController::class , 'viewprodect'])->name('dashboard');
+    Route::get('/', [OrderController::class , 'index']);
 });
 
 Route::group([ 'Middleware' => 'auth'] , function(){
@@ -42,6 +42,7 @@ Route::group([ 'Middleware' => 'auth'] , function(){
     Route::resource('roles', RoleController::class );
     Route::resource('permissions', permissionController::class );
     Route::POST('roles/{id}', [RoleController::class , 'update'])->name('roles.update');
+    Route::get('/dashboard', [ProdectController::class , 'viewprodect'])->name('dashboard');
     
     
 });

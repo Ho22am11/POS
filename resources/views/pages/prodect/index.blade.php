@@ -62,9 +62,11 @@ Prodects
                   <span class="text-secondary text-xs font-weight-bold">{{ $prodect->count }}</span>
                 </td>
                 <td class="align-middle">
+                  @can('edit prodect')
                   <a href="{{ route('prodects.edit' , $prodect->id  )}}" class="text-secondary font-weight-bold text-xs" data-toggle="tooltip" data-original-title="Edit user">
                     Edit
                   </a>
+                  @endcan
                 </td>
               </tr>
               @endforeach
@@ -76,22 +78,14 @@ Prodects
     </div> </div>
 
     <div class="row">
+      @can('add prodect')
         <div class="col-12">
           <div class="card mb-4">
             <div class="card-header pb-0">
               <h6> add prodect</h6>
             </div>
-            @if ($errors->any())
-            <div class="alert alert-danger">
-                <ul>
-                    @foreach ($errors->all() as $error)
-                        <li>{{ $error }}</li>
-                    @endforeach
-                </ul>
-            </div>
-        @endif
+           
 
-                
                     <form action="{{ route('prodects.store') }}" method="post"  autocomplete="off" enctype="multipart/form-data">
                         @csrf
                     <div class="card-header">
@@ -145,6 +139,7 @@ Prodects
             
           </div>
         </div>
+      @endcan
     </div>
   
    

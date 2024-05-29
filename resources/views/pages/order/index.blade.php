@@ -46,6 +46,7 @@ Orders
             <tfoot class="orde">
               <tr>
                   <td colspan="2">Total</td>
+                  @can('order_for custmor')
                   <td> <select name="customer_id" class="form-control" >
                     <option  value="cus" selected>chose customer</option>
                     @foreach($customers as $customer)
@@ -53,6 +54,7 @@ Orders
                     @endforeach
                     </select>
                   </td>
+                  @endcan
                   <td id="total-amount">0</td>
               </tr>
           </tfoot>

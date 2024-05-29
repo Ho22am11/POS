@@ -22,7 +22,7 @@ class RoleSeeder extends Seeder
        $roleadmin->syncPermissions($permissions);
        
        $roleemployee = Role::create(['name' => 'employee']);
-       $roleemployee->syncPermissions( 2 , 4 , 5 , 6 , 7 , 9 , 10 );
+       $roleemployee->syncPermissions( 2 , 4 , 5 , 6 , 7 , 9 , 10 , 11 );
 
        $roleuser = Role::create(['name' => 'user']);
        $roleemployee->syncPermissions( 2 );

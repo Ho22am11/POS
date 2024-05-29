@@ -17,6 +17,7 @@ class PermissionSeeder extends Seeder
             'dashboard' ,
             'orders' ,
             'employees' ,
+            'prodect' ,
             'add prodect' ,
             'edit prodect' ,
             'add coustomer' , 
