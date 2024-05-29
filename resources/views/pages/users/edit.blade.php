@@ -127,6 +127,9 @@ Users
           <div class="card z-index-2">
            <div class="card-body p-3">
              <h3 class="card-title pt-3 m-3">permission</h3>
+             <form action="{{ route('permissions.store')}}" method="POST">
+              @csrf
+
              <table class="table align-items-center mb-0">
                <thead>
                  <tr>
@@ -138,24 +141,34 @@ Users
                </thead>
     
                <tbody >
-               @forelse ($permissions as $index => $permission)
-               <tr>
-                <td>{{ $index + 1 }}</td>
-                <td>{{ $permission->name }}</td>
-               </tr>
-              @empty
-              <tr>
-                <td colspan="2">No permissions found</td>
-             </tr>
-              @endforelse
+                @foreach ($AllPermissions as $AllPermission)
+                <tr>
+                    <td>
+                        <input type="checkbox" name="permission[]" value="{{ $AllPermission->name }}" 
+                            @if($permissions->pluck('id')->contains($AllPermission->id)) checked @endif>
+                    </td>
+                    <td>{{ $AllPermission->name }}</td>
+                </tr>
+            @endforeach
   
 
         
             
                </tbody>
+
+              
            
    
              </table>
+
+            </div>       <br>                
+                         
+            <input type="hidden" name="id" value="{{ $user->id}}" >
+                       
+            <button type="submit" class="btn btn-primary">edit Permissions </button>
+
+        </div>
+            </form> 
    
            </div>
          </div>

@@ -23,6 +23,7 @@ class PermissionSeeder extends Seeder
             'coustomer' ,
             'edit coustomer' ,
             'users' ,
+            'order_for custmor'
 
 
         ];

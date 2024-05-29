@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+use Spatie\Permission\Models\Permission;
 use Spatie\Permission\Models\Role;
 
 class RoleController extends Controller
@@ -55,9 +56,10 @@ class RoleController extends Controller
      */
     public function edit($id)
     {
-        $user = User::find($id);
-        $permissions = $user->getAllPermissions();
-        return view('pages.users.edit' , compact('user' , 'permissions') );
+        $data['user'] = User::find($id);
+        $data['permissions'] = $data['user']->getAllPermissions();
+        $data['AllPermissions']  = Permission::all();
+        return view('pages.users.edit' , $data );
 
     }
 

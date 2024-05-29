@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class permissionController extends Controller
@@ -27,7 +28,13 @@ class permissionController extends Controller
      */
     public function store(Request $request)
     {
-        //
+       $user = User::find($request->id);
+
+        $user->syncPermissions($request->permission);
+
+        
+        return back();
+
     }
 
     /**
