@@ -46,6 +46,13 @@ Orders
             <tfoot class="orde">
               <tr>
                   <td colspan="2">Total</td>
+                  <td> <select name="customer_id" class="form-control" >
+                    <option  value="cus" selected>chose customer</option>
+                    @foreach($customers as $customer)
+                    <option value="{{ $customer->id}}" >{{ $customer->name }}</option>
+                    @endforeach
+                    </select>
+                  </td>
                   <td id="total-amount">0</td>
               </tr>
           </tfoot>
@@ -68,6 +75,7 @@ Orders
               <tr>
                 <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-4">#</th>
                 <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ">customer</th>
+                <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ">Order by</th>
                 <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Parice</th>
                 <th class="text-secondary opacity-7"></th>
               </tr>
@@ -78,7 +86,11 @@ Orders
               @foreach ($orders as $order)
               <tr>
                 <td >{{ $loop->index+1 }}</td>
-                <td >{{ $order->customer->name }}</td>
+                <td > 
+                  {{ $order->customer->user->name }}
+         
+              </td>
+              <td>{{$order->user->name}}</td>
                 <td>{{ $order->total}}</td>
                 <td><a href="{{ route('orders.show', $order->id ) }}" >show</a></td>
               </tr>

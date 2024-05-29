@@ -89,13 +89,8 @@ customers
                           
                         </div>
                         <div class="col">
-                            <label for="type">Gender</label>
-                            <select class="form-control" >
-                                <option selected> selecte Gender</option>
-                                <option value="1">male</option>
-                                <option value="2">famle</option>
-
-                              </select>
+                            <label for="password">password</label>
+                            <input type="password" class="form-control" name="password" id="password" placeholder="password">
                           
                         </div>
                       </div>

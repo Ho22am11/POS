@@ -14,7 +14,8 @@ return new class extends Migration
         Schema::create('orders', function (Blueprint $table) {
             $table->id();
             $table->decimal('total');
-            $table->foreignId('customer_id')->references('id')->on('customers')->cascadeOnDelete();
+            $table->foreignId('customer_id')->nullable()->references('id')->on('customers')->cascadeOnDelete();
+            $table->foreignId('user_id')->nullable()->references('id')->on('users')->cascadeOnDelete();
             $table->timestamps();
         });
     }

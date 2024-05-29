@@ -13,10 +13,9 @@ return new class extends Migration
     {
         Schema::create('customers', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
+            $table->foreignId('user_id')->references('id')->on('users');
             $table->text('addrese');
             $table->string('num');
-            $table->string('email');
             $table->timestamps();
         });
     }

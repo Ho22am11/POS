@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Customer;
 use App\Models\Order;
 use App\Models\OrderIteam;
 use App\Models\Prodect;
@@ -13,7 +14,8 @@ class OrderController extends Controller
     public function index()
     {
         $data['prodects'] =  Prodect::all();
-        $data['orders'] = Order::latest()->get();
+        $data['customers'] =  Customer::all();
+        $data['orders'] = Order::with('customer.user')->latest()->get();
         return view('pages.order.index' , $data );
     }
 
@@ -28,10 +30,22 @@ class OrderController extends Controller
 
     public function store(Request $request)
     {
-        $order = Order::create([
-            'customer_id' => 1 ,
-            'total' => $request->total
-        ]);
+        $customerId = Customer::where('user_id', auth()->user()->id)->pluck('id')->first();
+        if ($request->customer_id == 'cus' ) {
+            $order = Order::create([
+                'customer_id' => $customerId ,
+                'total' => $request->total,
+                'user_id' => auth()->user()->id,
+            ]);
+        } else {
+            $order = Order::create([
+                'customer_id' => $request->customer_id ,
+                'user_id' => auth()->user()->id ,
+                'total' => $request->total
+            ]);
+        }
+        
+
 
         foreach($request->products as $key => $itemproduct) 
         OrderIteam::create([

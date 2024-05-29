@@ -5,6 +5,9 @@ namespace App\Http\Controllers;
 use App\Models\Customer;
 use Illuminate\Http\Request;
 use App\Http\Requests\CustomerRequest ;
+use App\Models\User;
+use Illuminate\Support\Facades\Hash;
+
 class CustomerController extends Controller
 {
     /**
@@ -24,7 +27,18 @@ class CustomerController extends Controller
     public function store(CustomerRequest $request)
     {
         $request->validated();
-        Customer::create($request->all());
+        $user = User::create([
+            'name' => $request->name,
+            'email' => $request->email,
+            'email_verified_at' => now() ,
+            'password' => Hash::make($request->password),
+        ])->assignRole('user');
+
+        Customer::create([
+            'user_id' => $user->id ,
+            'addrese' => $request->addrese ,
+            'num' => $request->num ,
+        ]);
         return back()->with('success', 'Customer added successfully.');
     }
 
