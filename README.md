@@ -44,12 +44,11 @@ php artisan db seed
 ```
 <hr>
 
-- login by email is admin@rscoder.com and password is 123456
+- login by email is Admin@gmail.com and password is password
 
 
 
 
-![01b82df0627471f34905869dd91f083c8886f640r1-1920-1100v2_hq](https://github.com/Ho22am11/POS/assets/130249051/0a002327-fcdf-47f5-b7a9-8a32f9bb6c1d)
 
 
 
